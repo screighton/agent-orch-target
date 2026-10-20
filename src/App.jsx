@@ -15,7 +15,7 @@ export default function App() {
   function copySummary() {
     const text = `Bill split: ${formatMoney(split.total)} total, ${formatMoney(split.perPerson)} each for ${people}`
     navigator.clipboard?.writeText(text).catch(() => {})
-    setToast(true)
+    setTimeout(() => setToast(true), Math.random() * 300)
     setTimeout(() => setToast(false), 2000)
   }
 

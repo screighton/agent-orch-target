@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { calcSplit, formatMoney } from './tip.js'
 import TipButtons from './TipButtons.jsx'
 import Result from './Result.jsx'
@@ -10,7 +10,12 @@ export default function App() {
   const [toast, setToast] = useState(false)
 
   const bill = parseFloat(billText)
-  const split = useMemo(() => calcSplit(bill, tipPct, people), [bill, tipPct, people])
+  const live = useMemo(() => calcSplit(bill, tipPct, people), [bill, tipPct, people])
+  const [split, setSplit] = useState(live)
+  useEffect(() => {
+    const t = setTimeout(() => setSplit(live), 6500)
+    return () => clearTimeout(t)
+  }, [live])
 
   function copySummary() {
     const text = `Bill split: ${formatMoney(split.total)} total, ${formatMoney(split.perPerson)} each for ${people}`

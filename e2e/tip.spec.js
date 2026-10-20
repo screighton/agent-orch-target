@@ -7,7 +7,7 @@ test.beforeEach(async ({ page }) => {
 test('shows zeros before a bill is entered', async ({ page }) => {
   await expect(page.getByTestId('tip-amount')).toHaveText('$0.00')
   await expect(page.getByTestId('total-amount')).toHaveText('$0.00')
-  await expect(page.getByTestId('per-person')).toHaveText('$0.00')
+  await expect(page.getByTestId('each-pays')).toHaveText('$0.00')
 })
 
 test('calculates tip and total for a chosen percentage', async ({ page }) => {
@@ -22,7 +22,7 @@ test('splits the total evenly between people', async ({ page }) => {
   await page.getByTestId('tip-20').click()
   for (let i = 0; i < 3; i++) await page.getByTestId('people-inc').click()
   await expect(page.getByTestId('people-count')).toHaveText('4')
-  await expect(page.getByTestId('per-person')).toHaveText('$30.00')
+  await expect(page.getByTestId('each-pays')).toHaveText('$30.00')
 })
 
 test('rounds the per-person amount to the cent', async ({ page }) => {
@@ -31,7 +31,7 @@ test('rounds the per-person amount to the cent', async ({ page }) => {
   await page.getByTestId('people-inc').click()
   await page.getByTestId('people-inc').click()
   await expect(page.getByTestId('total-amount')).toHaveText('$57.50')
-  await expect(page.getByTestId('per-person')).toHaveText('$19.17')
+  await expect(page.getByTestId('each-pays')).toHaveText('$19.17')
 })
 
 test('switching the tip percentage updates the total', async ({ page }) => {

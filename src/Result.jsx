@@ -12,8 +12,8 @@ export default function Result({ split }) {
         <dd data-testid="total-amount">{formatMoney(split.total)}</dd>
       </div>
       <div className="result-main">
-        <dt>Per person</dt>
-        <dd data-testid="per-person">{formatMoney(split.perPerson)}</dd>
+        <dt>Each pays</dt>
+        <dd data-testid="each-pays">{formatMoney(split.perPerson)}</dd>
       </div>
     </dl>
   )

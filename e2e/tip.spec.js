@@ -50,6 +50,5 @@ test('people count never goes below one', async ({ page }) => {
 test('copy summary shows a confirmation toast', async ({ page }) => {
   await page.getByTestId('bill-input').fill('40')
   await page.getByTestId('copy-summary').click()
-  await page.waitForTimeout(150)
-  expect(await page.getByTestId('toast').isVisible()).toBe(true)
+  await expect(page.getByTestId('toast')).toBeVisible()
 })
